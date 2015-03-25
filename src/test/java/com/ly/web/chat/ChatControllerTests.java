@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.samples.async.chat;
+package com.ly.web.chat;
 
 import static org.easymock.EasyMock.expect;
 import static org.easymock.EasyMock.replay;

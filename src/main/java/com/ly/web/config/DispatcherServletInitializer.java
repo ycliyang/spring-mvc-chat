@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.springframework.samples.async.config;
+package com.ly.web.config;
 
 import javax.servlet.ServletRegistration.Dynamic;
 
@@ -40,6 +40,7 @@ public class DispatcherServletInitializer extends AbstractAnnotationConfigDispat
 	@Override
 	protected void customizeRegistration(Dynamic registration) {
 		registration.setAsyncSupported(true);
+
 	}
 
 }

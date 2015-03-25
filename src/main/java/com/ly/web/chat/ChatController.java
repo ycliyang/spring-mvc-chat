@@ -1,4 +1,4 @@
-package org.springframework.samples.async.chat;
+package com.ly.web.chat;
 
 import java.util.Collections;
 import java.util.List;
