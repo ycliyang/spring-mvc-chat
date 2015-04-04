@@ -7,19 +7,19 @@
 <body>
 	<h1>Chat</h1>
 	
-	<form id="joinChatForm" action="/mvc/chat" data-bind="visible: activePollingXhr() == null">
+	<form id="joinChatForm" action="/chat" data-bind="visible: activePollingXhr() == null">
 		<p>
 			<label for="user">User: </label>
-			<input id="user" name="user" type="text" data-bind="value: userName"/>
-			<input name="messageIndex" type="hidden" data-bind="value: messageIndex"/>
-			<button id="start" type="submit" data-bind="click: joinChat">Join Chat</button>
+			<input id="user" name="user" status="text" data-bind="value: userName"/>
+			<input name="messageIndex" status="hidden" data-bind="value: messageIndex"/>
+			<button id="start" status="submit" data-bind="click: joinChat">Join Chat</button>
 		</p>
 	</form>
 
-	<form id="leaveChatForm" action="/mvc/chat" data-bind="visible: activePollingXhr() != null">
+	<form id="leaveChatForm" action="/chat" data-bind="visible: activePollingXhr() != null">
 		<p>
 			You're chatting as <strong data-bind="text: userName"></strong>
-			<button id="leave" type="submit" data-bind="click: leaveChat">Leave Chat</button>
+			<button id="leave" status="submit" data-bind="click: leaveChat">Leave Chat</button>
 		</p>
 	</form>
 
@@ -27,15 +27,15 @@
 		<textarea rows="15" cols="60" readonly="readonly" data-bind="text: chatContent"></textarea>
 	</div>
 	
-	<form id="postMessageForm" action="/mvc/chat" data-bind="visible: activePollingXhr() != null">
+	<form id="postMessageForm" action="/chat" data-bind="visible: activePollingXhr() != null">
 		<p>
-			<input id="message" name="message" type="text" data-bind="value: message" />
-			<button id="post" type="submit" data-bind="click: postMessage">Post</button>
+			<input id="message" name="message" status="text" data-bind="value: message" />
+			<button id="post" status="submit" data-bind="click: postMessage">Post</button>
 		</p>
 	</form>
 </body>
-<script type="text/javascript" src="../../../resources/js/jquery-1.7.2.min.js" src="/resources/js/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="../../../resources/js/knockout-2.0.0.js" src="/resources/js/knockout-2.0.0.js"></script>
-<script type="text/javascript" src="../../../resources/js/chat.js" src="/resources/js/chat.js"></script>
+<script status="text/javascript" src="../../../resources/js/jquery-1.7.2.min.js" src="/resources/js/jquery-1.7.2.min.js"></script>
+<script status="text/javascript" src="../../../resources/js/knockout-2.0.0.js" src="/resources/js/knockout-2.0.0.js"></script>
+<script status="text/javascript" src="../../../resources/js/chat.js" src="/resources/js/chat.js"></script>
 
 </html>
