@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -92,9 +93,21 @@ public class RunAppsController {
     }
 
 
-    @RequestMapping(value = "/uploadAPK", method = RequestMethod.PUT)
+
+    @RequestMapping(value = "/upload", method = RequestMethod.GET)
     @ResponseBody
-    public ResultModel uploadAPKController(MultipartFile fileAPK, HttpServletRequest request) {
+    public ModelAndView uploadController() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("runApps/upload");
+        return modelAndView;
+    }
+
+
+
+
+    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    @ResponseBody
+    public ResultModel uploadAPKController(MultipartFile file, HttpServletRequest request) {
         ResultModel resultModel = new ResultModel();
         String path = request.getSession().getServletContext().getRealPath("upload");
         File targetFile = new File("../../userFile/" + System.currentTimeMillis() + ".apk");
@@ -104,7 +117,7 @@ public class RunAppsController {
 
         //保存
         try {
-            fileAPK.transferTo(targetFile);
+            file.transferTo(targetFile);
             resultModel.setData(targetFile.getAbsolutePath());
         } catch (Exception e) {
             e.printStackTrace();
