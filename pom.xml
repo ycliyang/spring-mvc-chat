@@ -8,9 +8,11 @@
 	<name>Chat sample using the Spring MVC Servlet-based async support</name>
 
 	<properties>
-		<org.springframework-version>4.0.1.RELEASE</org.springframework-version>
-        <hibernate-version>4.3.5.Final</hibernate-version>
+		<org.springframework-version>4.1.6.RELEASE</org.springframework-version>
+        <hibernate-version>4.3.7.Final</hibernate-version>
+        <tomcat-version>8.0.20</tomcat-version>
 	</properties>
+
 
 	<dependencies>
 		<dependency>
@@ -28,6 +30,11 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-websocket</artifactId>
+            <version>${org.springframework-version}</version>
+        </dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
@@ -96,11 +103,6 @@
 		    </exclusions>
 		</dependency>
 		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.3.0</version>
-		</dependency>
-		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>1.0.1</version>
@@ -136,6 +138,44 @@
 			<scope>test</scope>
 		</dependency>
 
+        <!--<dependency>-->
+            <!--<groupId>org.apache.tomcat.embed</groupId>-->
+            <!--<artifactId>tomcat-embed-websocket</artifactId>-->
+            <!--<version>${tomcat-version}</version>-->
+        <!--</dependency>-->
+
+
+        <!-- For SockJS -->
+        <!-- http://jira.codehaus.org/browse/JACKSON-884 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.2.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.6.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>1.6.4</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.6.4</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.16</version>
+            <scope>runtime</scope>
+        </dependency>
 
 
         <!-- AspectJ -->
@@ -195,11 +235,11 @@
             <artifactId>hibernate-ehcache</artifactId>
             <version>${hibernate-version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-commons-annotations</artifactId>
-            <version>4.0.4.Final</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.hibernate</groupId>-->
+            <!--<artifactId>hibernate-commons-annotations</artifactId>-->
+            <!--<version>4.0.4.Final</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>
             <artifactId>hibernate-jpa-2.1-api</artifactId>
@@ -279,11 +319,11 @@
 
 
 
-        <!-- tomcat7.0.35 数据库连接池 -->
+        <!-- tomcat8.0.20 数据库连接池 -->
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-dbcp</artifactId>
-            <version>7.0.35</version>
+            <version>${tomcat-version}</version>
         </dependency>
 
 	</dependencies>
@@ -306,9 +346,25 @@
 			<releases><enabled>false</enabled></releases>
 		</repository>
 
+        <repository>
+            <id>tomcat-snapshots</id>
+            <url>https://repository.apache.org/content/repositories/snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>java-net</id>
+            <url>https://maven.java.net/content/repositories/releases</url>
+        </repository>
+
 
 	</repositories>
-	
+
+
 	<pluginRepositories>
 		<pluginRepository>
 			<id>apache.snapshots</id>
