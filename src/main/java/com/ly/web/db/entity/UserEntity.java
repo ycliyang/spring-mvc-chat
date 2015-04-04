@@ -3,10 +3,13 @@ package com.ly.web.db.entity;
 
 import javax.persistence.*;
 
-@Entity(name="users")
-public class Users {
-	
-	public Users(){
+@Entity(name=UserEntity.TAG_NAME)
+public class UserEntity {
+
+    public static final String TAG_NAME = "users";
+
+
+	public UserEntity(){
 		super();
 	}
 	

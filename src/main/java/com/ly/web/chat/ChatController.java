@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.async.DeferredResult;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/mvc/chat")
+@RequestMapping("/chat")
 public class ChatController {
 
 	private final ChatRepository chatRepository;
@@ -65,5 +66,15 @@ public class ChatController {
 			entry.getKey().setResult(messages);
 		}
 	}
+
+
+    @RequestMapping(method=RequestMethod.GET,value = "testChat")
+    @ResponseBody
+    public ModelAndView testChat() {
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("message", "HelloMVC");
+        mv.setViewName("testChat");
+        return mv;
+    }
 
 }

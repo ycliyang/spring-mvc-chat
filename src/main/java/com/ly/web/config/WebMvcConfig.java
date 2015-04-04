@@ -1,12 +1,6 @@
 package com.ly.web.config;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import org.apache.taglibs.standard.lang.jstl.JSTLVariableResolver;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.*;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -18,36 +12,31 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
-import org.springframework.web.servlet.view.UrlBasedViewResolver;
-import org.thymeleaf.spring3.SpringTemplateEngine;
-import org.thymeleaf.spring3.view.ThymeleafViewResolver;
-import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
-import org.thymeleaf.templateresolver.ITemplateResolver;
-import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
-import org.thymeleaf.templateresolver.TemplateResolver;
+
+import java.util.List;
 
 @Configuration
-@ComponentScan(basePackages = { "com.ly.web" })
-@EnableAspectJAutoProxy(proxyTargetClass=true)
-@Import({DaoConfig.class})
+@ComponentScan(basePackages = {"com.ly.web"})
+@EnableAspectJAutoProxy(proxyTargetClass = true)
+@Import({DaoConfig.class, MultipartResolverConfig.class})
 public class WebMvcConfig extends WebMvcConfigurationSupport {
 
 
     private boolean cacheTemplates = false;
 
-	@Override
-	public void configureAsyncSupport(AsyncSupportConfigurer configurer) {
-		configurer.setDefaultTimeout(30*1000L);
-	}
+    @Override
+    public void configureAsyncSupport(AsyncSupportConfigurer configurer) {
+        configurer.setDefaultTimeout(30 * 1000L);
+    }
 
-	@Override
-	protected void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-		converters.add(new MappingJackson2HttpMessageConverter());
-	}
+    @Override
+    protected void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        converters.add(new MappingJackson2HttpMessageConverter());
+    }
 
-	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/").setViewName("chat");
-	}
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/").setViewName("chat");
+    }
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
@@ -56,9 +45,9 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
     }
 
     @Override
-	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/resources/**").addResourceLocations("resources/");
-	}
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/resources/**").addResourceLocations("resources/");
+    }
 
     @Bean
     public ViewResolver viewResolverOne() {
@@ -69,7 +58,6 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         resolver.setViewClass(JstlView.class);
         return resolver;
     }
-
 
 
 //    @Bean

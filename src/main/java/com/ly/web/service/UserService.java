@@ -12,7 +12,7 @@ public class UserService {
 
 	@Resource
 	private UsersDAO userDao;
-	
+
 	@Transactional
 	public int userCount(){
 		return userDao.getAllUser().size();
